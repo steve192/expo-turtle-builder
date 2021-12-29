@@ -1,0 +1,67 @@
+#!/bin/bash
+
+#expo export #--public-url
+
+#turtle build:android -t apk \
+#-o output/android/file.apk
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]; do
+  key="$1"
+
+  case $key in
+  -t | --target)
+    TARGET="$2"
+    shift # past argument
+    shift # past value
+    ;;
+  -f | --format)
+    FORMAT="$2"
+    shift # past argument
+    shift # past value
+    ;;
+  -p | --public-url)
+    PUBLIC_URL="$2"
+    shift # past argument
+    shift # past value
+    ;;
+  *)                   # unknown option
+    POSITIONAL+=("$1") # save it in an array for later
+    shift              # past argument
+    ;;
+  esac
+done
+
+set -- "${POSITIONAL[@]}" # restore positional parameters if we may need them in the future
+
+echo "TARGET  = ${TARGET}"
+echo "FORMAT     = ${FORMAT}"
+echo "PUBLIC_URL    = ${PUBLIC_URL}"
+
+case "$TARGET" in
+android)
+  case "$FORMAT" in
+  apk)
+    EXTENNSION="apk"
+    ;;
+  app-bundle)
+    EXTENSION="aab"
+    ;;
+  *)
+    echo "Unknown format specified. Use apk or app-bundle"
+    exit 1
+    ;;
+  esac
+  if [ -z "$PUBLIC_URL" ]; then
+    turtle build:android -t $FORMAT -o output/android.${EXTENNSION}
+  else
+    turtle build:android -t $FORMAT -o output/android.${FORMAT} --public-url $PUBLIC_URL
+  fi
+  ;;
+
+\
+  \
+  *)
+  echo "Unkown target or not supported yet"
+  ;;
+esac

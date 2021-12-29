@@ -53,7 +53,7 @@ android)
     ;;
   esac
   if [ -z "$PUBLIC_URL" ]; then
-    turtle build:android -t $FORMAT -o output/android.${EXTENNSION}
+    turtle build:android -t $FORMAT -o output/android.${EXTENSION}
   else
     turtle build:android -t $FORMAT -o output/android.${FORMAT} --public-url $PUBLIC_URL
   fi

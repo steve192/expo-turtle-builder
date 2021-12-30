@@ -30,10 +30,17 @@ expo-turtle-builder  \
     --public-url <optional url> \
 ```
 
-Using the container
+Using the container on a directory
 
 ```bash
-TODO
+npm ci
+
+docker run -it --rm \
+	-v $(pwd):/build \
+	-e EXPO_USERNAME=<your expo username> \
+	-e EXPO_PASSWORD=<your expo password> \
+	steve192/expo-turtle-builder \
+	expo-turtle-builder --target android --format app-bundle
 ```
 
 In gitlab ci
@@ -54,12 +61,7 @@ build-android:
       - output/android*
 
 ```
-
-In github actions
-
-```yaml
-TODO
-```
+## Parameters
 
 ### target
 

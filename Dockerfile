@@ -13,5 +13,9 @@ RUN turtle setup:android --sdk-version 43.0.0
 COPY src/expo-turtle-builder /usr/local/bin
 RUN chmod +x /usr/local/bin/expo-turtle-builder
 
+# Go to /build directory to allow mounting of volumes
+RUN mkdir build
+WORKDIR /build
+
 ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
 CMD ["expo-turtle-builder"]

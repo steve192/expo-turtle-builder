@@ -39,7 +39,20 @@ TODO
 In gitlab ci
 
 ```yaml
-TODO
+build-android:
+  stage: build
+  image: steve192/expo-turtle-builder
+  variables:
+    # Token not supported by turtle, store variables in CI variables section of your project
+    EXPO_USERNAME: $EXPO_USERNAME
+    EXPO_PASSWORD: $EXPO_PASSWORD
+  script:
+    - npm ci
+    - expo-turtle-builder --target android --format app-bundle
+  artifacts:
+    paths:
+      - output/android*
+
 ```
 
 In github actions

@@ -1,3 +1,5 @@
+> **Warning**
+> This repository is deprecated. You should take a look at [Expo EAS](https://expo.dev/eas) to build your future applications
 # expo-turtle-builder
 Github https://github.com/Steve192/expo-turtle-builder
 
